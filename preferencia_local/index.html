@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mi Proyecto Web - Alexander Cardona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Fondo degradado moderno + sutiles líneas de patrón */
+            background: linear-gradient(145deg, #f5f7fc 0%, #e9eef4 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1a2c3e;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Contenedor principal para centrar y dar ancho máximo */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+            padding: 1.8rem 2rem;
+            transition: all 0.2s ease;
+        }
+
+        /* Navegación estilo vidrio */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #cbd5e1;
+        }
+
+        nav a {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #0f3b5c;
+            transition: all 0.25s;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(30, 64, 92, 0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        nav a:hover {
+            background: #1e4a6e;
+            color: white;
+            border-color: #1e4a6e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e5a7a, #2b4f6e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Secciones con estilo tarjeta */
+        section {
+            background: white;
+            border-radius: 1.4rem;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        section:hover {
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1e4663;
+            border-left: 6px solid #f4a261;
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        ul li {
+            background: #eef2f9;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #1f4e6e;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Barras de progreso mejoradas */
+        label {
+            font-weight: 600;
+            margin-right: 1rem;
+            color: #2c5a7a;
+        }
+
+        progress {
+            width: 80%;
+            height: 1.2rem;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 0.5rem 0 1rem 0;
+        }
+        progress::-webkit-progress-bar {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+        }
+        progress::-webkit-progress-value {
+            background-color: #f4a261;
+            border-radius: 20px;
+            transition: width 0.3s;
+        }
+        progress::-moz-progress-bar {
+            background-color: #f4a261;
+            border-radius: 20px;
+        }
+
+        details {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 0.5rem;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #1f6392;
+        }
+
+        /* GALERÍA DE IMÁGENES EN LÍNEA */
+        .gallery-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #1f4e6e;
+        }
+        .gallery-title span {
+            background: #f4a261;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1e2f3a;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .gallery-card {
+            background: white;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2edf2;
+        }
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .gallery-card:hover img {
+            transform: scale(1.02);
+        }
+        .gallery-card p {
+            padding: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            background: #ffffffcc;
+            backdrop-filter: blur(2px);
+            color: #1a3e55;
+        }
+
+        .empty-gallery {
+            text-align: center;
+            padding: 3rem;
+            background: #ecf3f9;
+            border-radius: 1.5rem;
+            color: #4f6f8f;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            border-top: 1px solid #cbdbe0;
+            padding-top: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        footer img {
+            border-radius: 24px;
+            background: white;
+            padding: 0.3rem;
+        }
+        footer a {
+            color: #e76f51;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b9cadb, transparent);
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            nav a {
+                padding: 0.4rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <!-- Los hipervínculos ahora abren galerías de imágenes en línea sin recargar la página -->
+        <a href="#" id="galleryMotos">🏍️ Motos</a>
+        <a href="#" id="galleryLugares">🗺️ Lugares</a>
+        <a href="#" id="galleryImagenes">🖼️ Imágenes</a>
+        <a href="#" id="galleryRutas">🛣️ Rutas en Moto</a>
+    </nav>
+
+    <header>
+        <h1>Alexander Cardona</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Favoritos de Colombia</h2>
+            <ul>
+                <li>Bandeja Paisa</li>
+                <li>Café del Eje Cafetero</li>
+                <li>Playas de Santa Marta</li>
+                <li>Caño Cristales</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Las Mejores Motos para viajar</h2>
+            <label for="progreso1">Turing (100%):</label>
+            <progress id="progreso1" value="100" max="100"></progress><br>
+            <label for="progreso2">Naked (20%):</label>
+            <progress id="progreso2" value="20" max="100"></progress><br>
+            <label for="progreso3">Enduro (67%):</label>
+            <progress id="progreso3" value="67" max="100"></progress>
+        </section>
+
+        <section>
+            <h2>Más Sobre Mí</h2>
+            <details>
+                <summary>Mi Infancia</summary>
+                <p>Nací en las montañas antioqueñas, el rugir de las motos y los paisajes cafeteros me inspiraron a crear este espacio digital. Cada ruta es un recuerdo, cada imagen un sueño por compartir.</p>
+            </details>
+        </section>
+
+        <!-- SECCIÓN DE GALERÍA DINÁMICA (online) -->
+        <section style="background: #fefcf5;">
+            <div class="gallery-title">
+                📸 Galería en línea 
+                <span id="activeCategory">Selecciona una categoría</span>
+            </div>
+            <div id="galleryContainer">
+                <div class="empty-gallery">
+                    🌍 Haz clic en los botones de arriba (Motos, Lugares, Imágenes o Rutas en Moto) para ver imágenes reales desde internet.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <hr>
+    <footer>
+        <img src="http://www.intro-webdesign.com/images/newlogo.png" alt="Logo WD4E" width="200">
+        <p>
+            Esta página fue creada por <strong>Alexander Cardona</strong> &amp; Colleen van Lent. 
+            Para saber más sobre diseño web, visita 
+            <a href="http://www.intro-webdesign.com" target="_blank">Intro to Web Design</a>.
+        </p>
+    </footer>
+</div>
+
+<script>
+    // ---------- GALERÍA DE IMÁGENES EN LÍNEA (Todas las imágenes son obtenidas de internet, libres para uso educativo) ----------
+    // Cada categoría contiene URLs de imágenes reales (Unsplash, Pixabay, etc.) que muestran contenido relevante.
+    
+    const galleries = {
+        motos: {
+            title: "🏍️ Motos para aventura",
+            images: [
+                { url: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop", desc: "Moto Adventure en carretera" },
+                { url: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop", desc: "Moto deportiva de viaje" },
+                { url: "https://images.unsplash.com/photo-1624096104992-9c4ba7b3b80b?w=600&h=400&fit=crop", desc: "Ruta en moto de montaña" },
+                { url: "https://images.pexels.com/photos/1154510/pexels-photo-1154510.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop", desc: "Motos clásicas touring" },
+                { url: "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=600&h=400&fit=crop", desc: "Cabalgando en carretera" },
+                { url: "https://images.unsplash.com/photo-1630426477711-3d73e2b58d0f?w=600&h=400&fit=crop", desc: "Naked bike estilo libre" }
+            ]
+        },
+        lugares: {
+            title: "🗺️ Lugares increíbles (Colombia y el mundo)",
+            images: [
+                { url: "https://images.unsplash.com/photo-1558679873-ef0c6a4b7b50?w=600&h=400&fit=crop", desc: "Caño Cristales, Colombia" },
+                { url: "https://images.unsplash.com/photo-1590526719413-4b4e9d5c6a2b?w=600&h=400&fit=crop", desc: "Eje Cafetero, paisaje cultural" },
+                { url: "https://images.unsplash.com/photo-1565967511843-3303c6d6cf23?w=600&h=400&fit=crop", desc: "Playas de Santa Marta" },
+                { url: "https://images.unsplash.com/photo-1554384648-4a087cf1fa8b?w=600&h=400&fit=crop", desc: "Montañas colombianas para rutas" },
+                { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop", desc: "Valles y caminos de montaña" },
+                { url: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&h=400&fit=crop", desc: "Lagos andinos espectaculares" }
+            ]
+        },
+        imagenes: {
+            title: "🖼️ Colección visual · Naturaleza, cultura y motos",
+            images: [
+                { url: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=600&h=400&fit=crop", desc: "Atardecer en la cordillera" },
+                { url: "https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=600&h=400&fit=crop", desc: "Cascada escondida" },
+                { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop", desc: "Cultura y colores colombianos" },
+                { url: "https://images.unsplash.com/photo-1584809408273-4a1e55c3bd24?w=600&h=400&fit=crop", desc: "Paisaje cafetero y niebla" },
+                { url: "https://images.unsplash.com/photo-1631884363356-35fb9a1b7b5b?w=600&h=400&fit=crop", desc: "Río Quindío, aventura" },
+                { url: "https://images.unsplash.com/photo-1558389186-4384b171a1c9?w=600&h=400&fit=crop", desc: "Festival de la cultura" }
+            ]
+        },
+        rutas: {
+            title: "🛣️ Rutas en Moto · Caminos épicos",
+            images: [
+                { url: "https://images.unsplash.com/photo-1621553291284-577221b1a39c?w=600&h=400&fit=crop", desc: "Carretera serpenteante en los Andes" },
+                { url: "https://images.unsplash.com/photo-1555932312-2771fb80f2b7?w=600&h=400&fit=crop", desc: "Ruta hacia la Sierra Nevada" },
+                { url: "https://images.unsplash.com/photo-1529162227464-3b1f8d4a3e8a?w=600&h=400&fit=crop", desc: "Desvíos y paisajes dramáticos" },
+                { url: "https://images.unsplash.com/photo-1558980664-3a031cf67ea6?w=600&h=400&fit=crop", desc: "Ruta de los Páramos" },
+                { url: "https://images.unsplash.com/photo-1595253504694-b4cee1b5ecbb?w=600&h=400&fit=crop", desc: "Camino de herradura moderno" },
+                { url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop", desc: "Moto tour en carretera costera" }
+            ]
+        }
+    };
+
+    function renderGallery(categoryKey) {
+        const galleryDiv = document.getElementById('galleryContainer');
+        const activeSpan = document.getElementById('activeCategory');
+        const data = galleries[categoryKey];
+        if (!data) {
+            galleryDiv.innerHTML = `<div class="empty-gallery">⚠️ No se encontró la galería solicitada.</div>`;
+            activeSpan.textContent = "Sin categoría";
+            return;
+        }
+        
+        activeSpan.textContent = data.title;
+        
+        let html = `<div class="gallery-grid">`;
+        data.images.forEach(img => {
+            html += `
+                <div class="gallery-card">
+                    <img src="${img.url}" alt="${img.desc}" loading="lazy" onerror="this.src='https://picsum.photos/id/13/600/400?grayscale'; this.alt='Imagen no disponible'">
+                    <p>${img.desc}</p>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        galleryDiv.innerHTML = html;
+    }
+
+    // Controladores de eventos para los enlaces (hipervínculos)
+    document.getElementById('galleryMotos').addEventListener('click', (e) => {
+        e.preventDefault();
+        renderGallery('motos');
+    });
+    document.getElementById('galleryLugares').addEventListener('click', (e) => {
+        e.preventDefault();
+        renderGallery('lugares');
+    });
+    document.getElementById('galleryImagenes').addEventListener('click', (e) => {
+        e.preventDefault();
+        renderGallery('imagenes');
+    });
+    document.getElementById('galleryRutas').addEventListener('click', (e) => {
+        e.preventDefault();
+        renderGallery('rutas');
+    });
+
+    // Opcional: cargar por defecto la galería de "Motos" al iniciar para mostrar contenido dinámico desde el principio
+    // (Esto hará que al cargar la página ya se vea una galería de motos)
+    renderGallery('motos');
+</script>
+</body>
+</html>
